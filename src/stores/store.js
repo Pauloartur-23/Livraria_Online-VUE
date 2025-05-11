@@ -2,52 +2,50 @@ import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: [],
-    discount: 0,
-    discountCode: ''
+    items: JSON.parse(localStorage.getItem('cartItems') || '[]'),
+    discount: JSON.parse(localStorage.getItem('cartDiscount') || '0'),
+    discountCode: localStorage.getItem('cartCode') || ''
   }),
 
   getters: {
-    subtotal: (state) => {
-      let total = 0
-      for (const item of state.items) {
+    subtotal: (state) =>
+      state.items.reduce((total, item) => {
         const price = parseFloat(item.preco.replace('R$', ''))
-        total += price * item.quantity
-      }
-      return total
-    },
+        return total + price * item.quantity
+      }, 0),
 
-    totalPrice: (state) => {
-      const subtotal = state.subtotal
-      if (state.discount > 0) {
-        return subtotal * (1 - state.discount)
-      } else {
-        return subtotal
-      }
-    },
+    totalPrice: (state) =>
+      state.subtotal * (1 - state.discount)
   },
 
   actions: {
+    save() {
+      localStorage.setItem('cartItems', JSON.stringify(this.items))
+      localStorage.setItem('cartDiscount', JSON.stringify(this.discount))
+      localStorage.setItem('cartCode', this.discountCode)
+    },
+
     addItem(item) {
-      const existingItem = this.items.find(i => i.id === item.id)
-      if (existingItem) {
-        existingItem.quantity++
+      const existing = this.items.find(i => i.id === item.id)
+      if (existing) {
+        existing.quantity++
       } else {
         this.items.push({ ...item, quantity: 1 })
       }
+      this.save()
     },
 
-    removeItem(itemId) {
-      this.items = this.items.filter(item => item.id !== itemId)
+    removeItem(id) {
+      this.items = this.items.filter(i => i.id !== id)
+      this.save()
     },
 
-    updateQuantity(itemId, newQuantity) {
-      const item = this.items.find(i => i.id === itemId)
-      if (item) {
-        item.quantity = newQuantity
-      }
+    updateQuantity(id, qty) {
+      const item = this.items.find(i => i.id === id)
+      if (item) item.quantity = qty
+      this.save()
     },
-    
+
     applyCoupon(code) {
       if (code === 'Kennedy10') {
         this.discount = 0.1
@@ -56,11 +54,13 @@ export const useCartStore = defineStore('cart', {
         this.discount = 0.2
         this.discountCode = code
       }
+      this.save()
     },
 
     removeCoupon() {
       this.discount = 0
       this.discountCode = ''
+      this.save()
     }
   }
-}) 
+})
