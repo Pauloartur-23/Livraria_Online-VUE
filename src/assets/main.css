@@ -1,0 +1,136 @@
+@import './base.css';
+/*======================
+        EXPECIFICO
+  ======================*/
+  button{
+    cursor: pointer;
+  }
+/*======================
+          HEADER
+  ======================*/
+header{
+    padding: 1vw 10vw;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px #27AE60 solid;
+  }
+  header #logo{
+    display: flex;
+  }
+  header #logo p{
+    font-size: 1.5rem;
+    color: #231F2D;
+    padding-right: 0.5vw;
+    margin-top: 0.5vw;
+  }
+  header #logo p span{
+    font-size: 0.8rem;
+    color: #27AE60;
+    padding-left: 0.5vw;
+    padding-right: 0;
+    display: inline-block;
+    border-left: 2px #27AE60 solid;
+    margin-top: 0;
+    margin-right: 2vw;
+  }
+  
+  header #search {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  header #input-search{
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #F1F1F1;
+    border: none;
+    color: #B8B8B8;
+    padding: 0.7rem 1rem;
+    border-radius: 2px;
+    width: 30em;
+    transition: all ease-in-out .5s;
+    margin-right: -2vw;
+  }
+  header #search img{
+    width: 20px;
+  }
+  header #input-search:focus {
+    outline: 1px solid #B8B8B8;
+  }
+  header #image-search:hover {
+    cursor: pointer;
+  }
+  header #header-page-links {
+    list-style: none;
+    display: flex;
+  }
+  header #header-page-links li{
+    margin: 1vw;
+  }
+  header #header-page-links li a{
+    color: #7B7881;
+    text-decoration: none;
+    transition: all ease-in-out .5s;
+  }
+  header #header-page-links li a:hover{
+    text-decoration: underline;
+  }
+  header .image-links {
+    padding-top: 0.5vw;
+  }
+  header .divisao-links{
+    font-size: 30px;
+    color: #27AE60;
+  }
+  
+  /*======================
+    SECTION #CARRINHO-CODE
+  ======================*/
+
+  /*======================
+          FOOTER
+  ======================*/
+  footer{
+    background-color: #27AE60;
+    padding: 2vw 0vw 1vw 0vw;
+  }
+  footer #space-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0vw 15vw 2vw 15vw;
+    border-bottom: 1px white solid;
+  }
+  footer #space-footer div ul{
+    list-style: none;
+    margin-left: -2.5vw;
+  }
+  footer #space-footer #div-ifbooks-footer ul{
+    display: flex;
+  }
+  footer #space-footer #div-ifbooks-footer ul li{
+    margin-right: 0.5vw;
+    margin-top: 0.5vw;
+  }
+  footer #space-footer #div-ifbooks-footer p{
+    color: white;
+  }
+  footer #space-footer #div-ifbooks-footer ul li span{
+    font-size: 1.5rem;
+  }
+  footer #space-footer #div-contato-footer p{
+    color: white;
+    font-weight: bold;
+  }
+  footer #space-footer #div-contato-footer ul li{
+    margin-top: 0.5vw;
+    color: white;
+  }
+  footer #div-img-footer img {
+    margin: 2vw 1vw 0 0vw;
+  }
+  footer #copy {
+    text-align: center;
+    color: white;
+    padding: 1vw;
+  } 
